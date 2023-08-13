@@ -1,12 +1,9 @@
 [build]
   command = "npm run build" # Change this to your SvelteKit build command
-  functions = "functions"   # Directory containing your serverless functions
+  publish = "build"         # Directory where your SvelteKit app is built
 
 [build.environment]
   NODE_VERSION = "14" # Use the desired Node.js version
-
-[build.publish]
-  directory = "build" # Directory where your SvelteKit app is built
 
 [[redirects]]
   from = "/api/*"      # Redirect requests to your serverless function
