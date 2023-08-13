@@ -1,6 +1,6 @@
-const fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
-export const handler = async () => {
+export const handler = async (event) => {
   try {
     const { codeToFormat } = JSON.parse(event.body); // Parse input from the client
     const lexer = 'python';
