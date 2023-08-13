@@ -3,7 +3,5 @@
   publish = "build"         # Directory where your SvelteKit app is built
 
 
-[[redirects]]
-  from = "/api/*"      # Redirect requests to your serverless function
-  to = "/.netlify/functions/:splat"
-  status = 200
+[functions]
+        node_bundler = "esbuild"

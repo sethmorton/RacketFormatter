@@ -1,6 +1,6 @@
 const fetch = require('node-fetch');
 
-exports.handler = async function (event, context) {
+export const handler = async () => {
   try {
     const { codeToFormat } = JSON.parse(event.body); // Parse input from the client
     const lexer = 'python';
@@ -22,4 +22,6 @@ exports.handler = async function (event, context) {
       body: 'Error fetching data from the API',
     };
   }
-};
+}
+
+
