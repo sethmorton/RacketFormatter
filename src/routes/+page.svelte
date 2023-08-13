@@ -11,6 +11,7 @@
     endOfLine: 'LF' // or 'CRLF' if you prefer
 };
 
+
   const handleSubmittedCode = async () => {
 
 
@@ -23,6 +24,12 @@
     });
 
     formattedRacket = await response.text();
+
+    const el = document.getElementById('formattedCodeDiv');
+
+    if (el !== null) {
+      el.innerHTML = formattedRacket
+    }
     // const htmlContent = await response.text();
 
     
@@ -182,7 +189,7 @@
     <div class="container h-3/6 mx-auto">
       <div class="flex h-full space-x-4 flex-col md:flex-row lg:flex-row gap-y-4 md:gap-y-0">
         <div class="flex-grow">
-          <div class="bg-white h-full p-4 rounded-lg">
+          <div class="bg-white h-full p-4 rounded-lg" >
             <textarea id="inputCode" class="w-full h-5/6 resize-none border outline-none focus:outline-none pt-2 pl-2 rounded" bind:value={racketInput} placeholder="Enter your code here..."></textarea>
             <div class="lg:pt-4 md:pt-4 sm:pt-1 h-1/6 justify-between align-middle flex">
               <button class="inline-flex items-center h-8 px-3 text-sm font-medium text-center text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 rounded-lg" on:click={() => document.getElementById('optionModal')?.classList.remove("hidden")}>
@@ -202,8 +209,12 @@
           </div>
         </div>
         <div class="flex-grow">
-          <div class="bg-white p-4 rounded-lg h-full max-h-full w-full overflow-hidden">
-            <textarea id="formattedCode" class="whitespace-pre-wrap w-full h-full outline-none resize-none focus:outline-none" bind:value={formattedRacket} readonly/>
+          <div class="bg-white p-4 rounded-lg h-full max-h-full md:max-w-[calc(100%+4rem)] overflow-scroll">
+            <div class="whitespace-pre-wrap w-full h-full outline-none resize-none focus:outline-none">
+              <div class="w-full h-full" id="formattedCodeDiv" ></div>
+            </div>
+
+
           </div>
         </div>
       </div>
