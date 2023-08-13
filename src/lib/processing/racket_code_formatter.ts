@@ -4,6 +4,9 @@ interface FormatConfig {
 }
 
 export function formatLispCode(unformattedText: string, options: { insertSpaces: boolean; tabSize: number; endOfLine: string }): string {
+
+    console.log(unformattedText);
+    
     const formatConfig: FormatConfig = { indentString: '', newLineString: '' };
     
     if (options.insertSpaces) {
@@ -33,21 +36,27 @@ export function formatLispCode(unformattedText: string, options: { insertSpaces:
                         result += formatConfig.newLineString;
                     }
                     inArray = true;
+                    console.log(openLists);
+                    
                     result += formatConfig.indentString.repeat(openLists);
                     openLists += 1;
                     newLine = false;
                 }
                 result += unformattedText.charAt(i);
                 break;
-            case ')':
-                if (charEscaped) {
-                    charEscaped = false;
-                }
-                else if (!stringActive) {
-                    openLists -= 1;
-                }
-                result += unformattedText.charAt(i);
-                break;
+                case ')':
+                    if (charEscaped) {
+                        charEscaped = false;
+                    }
+                    else if (!stringActive && openLists > 0) { // Add this check
+                        openLists -= 1;
+                    }
+                    result += unformattedText.charAt(i);
+                    break;
+                
+                
+                
+                
             case '\n':
             case '\r':
                 newLine = true;
@@ -95,22 +104,3 @@ export function formatLispCode(unformattedText: string, options: { insertSpaces:
     return result;
 }
 
-// Example usage:
-const unformattedCode = `(define (blank-after-decls lst)
- (match lst
-  ((list a (== blank-symbol) b ...)
-   (list* a blank-symbol (blank-after-decls b)))
-   ((list (? decl*? a) b c ...)
-   (list* a blank-symbol (blank-after-decls (cons b c))))
-  ((list a b ...)
-   (cons a (blank-after-decls b)))
-  (_ '())))`;
-
-const options = {
-    insertSpaces: true,
-    tabSize: 4,
-    endOfLine: 'LF' // or 'CRLF' if you prefer
-};
-
-const formattedCode = formatLispCode(unformattedCode, options);
-console.log(formattedCode);

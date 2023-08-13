@@ -4,7 +4,7 @@
 
 
   let racketInput: string = '';
-  let formattedRacket : string = 'Formatted Racket Formatted RacketFormatted RacketFormatted RacketFormatted RacketFormatted RacketFormatted RacketFormatted RacketFormatted RacketFormatted RacketFormatted RacketFormatted RacketFormatted RacketFormatted Racket Formatted RacketFormatted RacketFormatted RacketFormatted RacketFormatted RacketFormatted RacketFormatted RacketFormatted RacketFormatted RacketFormatted RacketFormatted RacketFormatted RacketFormatted Racket Formatted RacketFormatted RacketFormatted RacketFormatted RacketFormatted RacketFormatted RacketFormatted RacketFormatted RacketFormatted RacketFormatted RacketFormatted RacketFormatted RacketFormatted Racket Formatted RacketFormatted RacketFormatted RacketFormatted RacketFormatted RacketFormatted RacketFormatted RacketFormatted RacketFormatted RacketFormatted RacketFormatted RacketFormatted RacketFormatted Racket Formatted RacketFormatted RacketFormatted RacketFormatted RacketFormatted RacketFormatted RacketFormatted RacketFormatted RacketFormatted RacketFormatted RacketFormatted RacketFormatted RacketFormatted Racket Formatted RacketFormatted RacketFormatted RacketFormatted RacketFormatted RacketFormatted RacketFormatted RacketFormatted RacketFormatted RacketFormatted RacketFormatted RacketFormatted Racket';
+  let formattedRacket : string = '';
   const options = {
     insertSpaces: true,
     tabSize: 4,
@@ -13,6 +13,9 @@
 
 
   const handleSubmittedCode = async () => {
+
+    $: console.log(formattedRacket);
+    
 
 
     if (racketInput.length > 1) {
