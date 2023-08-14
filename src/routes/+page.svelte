@@ -28,6 +28,9 @@
 
     formattedRacketCode = await response.text();
 
+    console.log(formattedRacketCode);
+    
+
     const formattedCodeElement = document.getElementById("formattedCodeDiv");
 
     if (formattedCodeElement !== null) {
