@@ -14,25 +14,8 @@
     tabSize: 4,
     endOfLine: "LF",
   };
+
   let isPageLoaded = false;
-  $: {
-    isDataLoading; if (isPageLoaded && isDataLoading == false) {
-      // console.log("HELLO?????");
-      
-      const formattedCodeElement = document.getElementById("formattedCodeDiv");
-
-      console.log(formattedCodeElement, "EHLEKJDLASKJDALSKDJ ");
-
-      if (formattedCodeElement !== null) {
-        formattedCodeElement.innerHTML = formattedRacketCode;
-      }
-      if (formattedRacketCode.length < 1) {
-        if (formattedCodeElement !== null) {
-        formattedCodeElement.innerHTML = "<pre>Formatted code goes here</pre>";
-      }
-      }
-    }
-  }
   onMount(async () => (isPageLoaded = true));
 
   const handleSubmittedCode = async () => {
@@ -42,21 +25,31 @@
 
     isDataLoading = true;
 
-    const response = await fetch("/.netlify/functions/hilite", {
-      method: "POST",
-      body: JSON.stringify({ codeToFormat: formattedRacketCode }),
-    });
+    // const response = await fetch("/.netlify/functions/hilite", {
+    //   method: "POST",
+    //   body: JSON.stringify({ codeToFormat: formattedRacketCode }),
+    // });
 
     isDataLoading = false;
-
     await tick();
 
-    formattedRacketCode = await response.text();
-    console.log(formattedRacketCode);
+    // isDataLoading = false;
+    updateDOM();
   };
+
+  const updateDOM = () => {
+    const formattedCodeElement = document.getElementById("formattedCodeDiv");
+    console.log(formattedCodeElement);
+    console.log(formattedRacketCode);
+    
+      if (formattedRacketCode.length > 1) {
+        if (formattedCodeElement !== null) {
+          formattedCodeElement.innerHTML = formattedRacketCode;
+        }
+      }
+  }
 </script>
 
-<!-- Main modal -->
 
 <div
   id="optionModal"
@@ -269,9 +262,9 @@
             </div>
           </div>
         </div>
-        <div class="flex-grow">
+        <div class="flex-grow md:max-w-[calc(50vw+4rem)]">
           <div
-            class="bg-white p-4 rounded-lg h-full max-h-full md:max-w-[calc(100%+4rem)] overflow-scroll"
+            class="bg-white p-4 rounded-lg h-full max-h-full  overflow-scroll"
           >
             {#if !isDataLoading}
               <div
