@@ -34,7 +34,9 @@
 
     const formattedCodeElement = document.getElementById("formattedCodeDiv");
 
-
+    await tick();
+    console.log(formattedCodeElement);
+    
 
     if (formattedCodeElement !== null) {
       await tick();
