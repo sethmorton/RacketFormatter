@@ -3,7 +3,7 @@
   import bgGradientImage from "$lib/assets/bg-gradient.jpg?as=run";
   import Img from "@zerodevx/svelte-img";
   import { DoubleBounce } from "svelte-loading-spinners";
-  import { tick } from "svelte";
+  import { onMount, tick } from "svelte";
 
   let isDataLoading = false;
 
@@ -14,6 +14,19 @@
     tabSize: 4,
     endOfLine: "LF",
   };
+  let isPageLoaded = false;
+  $: {
+    if (isPageLoaded && isDataLoading == false) {
+      const formattedCodeElement = document.getElementById("formattedCodeDiv");
+
+console.log(formattedCodeElement, "EHLEKJDLASKJDALSKDJ ");
+
+if (formattedCodeElement !== null) {
+  formattedCodeElement.innerHTML = formattedRacketCode;
+};
+    }
+  }
+  onMount(async () => isPageLoaded = true)
 
   const handleSubmittedCode = async () => {
     if (racketInput.length > 1) {
@@ -30,16 +43,9 @@
     formattedRacketCode = await response.text();
 
     isDataLoading = false;
-
+    await tick();
     console.log(formattedRacketCode);
-    
 
-    const formattedCodeElement = document.getElementById("formattedCodeDiv");
-
-    if (formattedCodeElement !== null) {
-      await tick();
-      formattedCodeElement.innerHTML = formattedRacketCode;
-    }
 
   };
 </script>
