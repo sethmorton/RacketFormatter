@@ -5,7 +5,7 @@ interface FormatConfig {
 
 export function formatLispCode(unformattedText: string, options: { insertSpaces: boolean; tabSize: number; endOfLine: string }): string {
 
-    console.log(unformattedText);
+
     
     const formatConfig: FormatConfig = { indentString: '', newLineString: '' };
     
@@ -17,6 +17,7 @@ export function formatLispCode(unformattedText: string, options: { insertSpaces:
 
     formatConfig.newLineString = options.endOfLine === 'CRLF' ? "\r\n" : "\n";
 
+
     let openLists = 0;
     let result = "";
     let newLine = true;
@@ -25,6 +26,11 @@ export function formatLispCode(unformattedText: string, options: { insertSpaces:
     let stringActive = false;
     let charEscaped = false;
 
+
+    if (unformattedText.split('\n')[0].includes(" #lang racketscript")) {
+        result += (unformattedText.split('\n')[0]).trim();
+    };
+    unformattedText =  unformattedText.substring(unformattedText.indexOf("\n") + 1)
     for (let i = 0; i < unformattedText.length; i++) {
         switch (unformattedText.charAt(i)) {
             case '(':
@@ -36,7 +42,7 @@ export function formatLispCode(unformattedText: string, options: { insertSpaces:
                         result += formatConfig.newLineString;
                     }
                     inArray = true;
-                    console.log(openLists);
+                    // console.log(openLists);
                     
                     result += formatConfig.indentString.repeat(openLists);
                     openLists += 1;
@@ -52,11 +58,7 @@ export function formatLispCode(unformattedText: string, options: { insertSpaces:
                         openLists -= 1;
                     }
                     result += unformattedText.charAt(i);
-                    break;
-                
-                
-                
-                
+                    break;    
             case '\n':
             case '\r':
                 newLine = true;

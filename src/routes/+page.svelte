@@ -11,10 +11,9 @@
     endOfLine: 'LF' // or 'CRLF' if you prefer
 };
 
-
   const handleSubmittedCode = async () => {
 
-    $: console.log(formattedRacket);
+
     
 
 
@@ -214,7 +213,7 @@
         <div class="flex-grow">
           <div class="bg-white p-4 rounded-lg h-full max-h-full md:max-w-[calc(100%+4rem)] overflow-scroll">
             <div class="whitespace-pre-wrap w-full h-full outline-none resize-none focus:outline-none">
-              <div class="w-full h-full" id="formattedCodeDiv" ></div>
+              <div class="w-full h-full" id="formattedCodeDiv" >Formatted text goes here...</div>
             </div>
 
 
