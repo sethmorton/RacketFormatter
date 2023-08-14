@@ -29,21 +29,18 @@
 
     formattedRacketCode = await response.text();
 
+    isDataLoading = false;
+
     console.log(formattedRacketCode);
     
 
     const formattedCodeElement = document.getElementById("formattedCodeDiv");
-
-    await tick();
-    console.log(formattedCodeElement);
-    
 
     if (formattedCodeElement !== null) {
       await tick();
       formattedCodeElement.innerHTML = formattedRacketCode;
     }
 
-    isDataLoading = false;
   };
 </script>
 
