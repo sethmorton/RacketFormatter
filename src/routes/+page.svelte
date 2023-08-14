@@ -17,7 +17,7 @@
   let isPageLoaded = false;
   $: {
     isDataLoading; if (isPageLoaded && isDataLoading == false) {
-      console.log("HELLO?????");
+      // console.log("HELLO?????");
       
       const formattedCodeElement = document.getElementById("formattedCodeDiv");
 
@@ -25,6 +25,11 @@
 
       if (formattedCodeElement !== null) {
         formattedCodeElement.innerHTML = formattedRacketCode;
+      }
+      if (formattedRacketCode.length < 1) {
+        if (formattedCodeElement !== null) {
+        formattedCodeElement.innerHTML = "<pre>Formatted code goes here</pre>";
+      }
       }
     }
   }
