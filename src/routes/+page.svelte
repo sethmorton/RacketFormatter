@@ -3,6 +3,7 @@
   import bgGradientImage from "$lib/assets/bg-gradient.jpg?as=run";
   import Img from "@zerodevx/svelte-img";
   import { DoubleBounce } from "svelte-loading-spinners";
+  import { tick } from "svelte";
 
   let isDataLoading = false;
 
@@ -33,7 +34,10 @@
 
     const formattedCodeElement = document.getElementById("formattedCodeDiv");
 
+
+
     if (formattedCodeElement !== null) {
+      await tick();
       formattedCodeElement.innerHTML = formattedRacketCode;
     }
 
