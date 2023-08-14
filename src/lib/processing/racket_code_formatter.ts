@@ -5,7 +5,7 @@ interface FormatConfig {
 
 export function formatLispCode(unformattedText: string, options: { insertSpaces: boolean; tabSize: number; endOfLine: string }): string {
 
-
+    console.log(unformattedText);
     
     const formatConfig: FormatConfig = { indentString: '', newLineString: '' };
     
@@ -29,8 +29,9 @@ export function formatLispCode(unformattedText: string, options: { insertSpaces:
 
     if (unformattedText.split('\n')[0].includes(" #lang racketscript")) {
         result += (unformattedText.split('\n')[0]).trim();
+        unformattedText =  unformattedText.substring(unformattedText.indexOf("\n") + 1)
     };
-    unformattedText =  unformattedText.substring(unformattedText.indexOf("\n") + 1)
+    
     for (let i = 0; i < unformattedText.length; i++) {
         switch (unformattedText.charAt(i)) {
             case '(':

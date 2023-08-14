@@ -213,7 +213,7 @@
         <div class="flex-grow">
           <div class="bg-white p-4 rounded-lg h-full max-h-full md:max-w-[calc(100%+4rem)] overflow-scroll">
             <div class="whitespace-pre-wrap w-full h-full outline-none resize-none focus:outline-none">
-              <div class="w-full h-full" id="formattedCodeDiv" >Formatted text goes here...</div>
+              <div class="w-full h-full" id="formattedCodeDiv" >Formatted code goes here...</div>
             </div>
 
 
@@ -380,17 +380,22 @@
         ><u>Seth Morton</u></a
       >
       - {new Date().getFullYear()}
+      <div class="">
+        <u><a href="mailto:smphotography39@gmail.com">Contact me</a></u> to report a bug
+      </div>
     </span>
+    
     <ul
       class="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0"
     >
       <li>
         <div class="mr-4 md:mr-6">
           Formatting logic sourced from <a
-            href="https://github.com/ds26gte/scmindent/tree/master"
-            ><u>scmindent</u></a
+            href="https://github.com/Sir2B/lispbeautifier"
+            ><u>lispbeautifier</u></a
           > repository
         </div>
+
       </li>
     </ul>
   </div>
@@ -398,7 +403,7 @@
 
 <style>
   .bg-gradient {
-    background-image: url("$lib/images/bg-gradient.jpg");
+    background-image: url("/bg-gradient.jpg");
     background-color: #cccccc; /* Used if the image is unavailable */
     background-position: center; /* Center the image */
     background-repeat: no-repeat; /* Do not repeat the image */
