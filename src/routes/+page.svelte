@@ -16,17 +16,19 @@
   };
   let isPageLoaded = false;
   $: {
-    if (isPageLoaded && isDataLoading == false) {
+    isDataLoading; if (isPageLoaded && isDataLoading == false) {
+      console.log("HELLO?????");
+      
       const formattedCodeElement = document.getElementById("formattedCodeDiv");
 
-console.log(formattedCodeElement, "EHLEKJDLASKJDALSKDJ ");
+      console.log(formattedCodeElement, "EHLEKJDLASKJDALSKDJ ");
 
-if (formattedCodeElement !== null) {
-  formattedCodeElement.innerHTML = formattedRacketCode;
-};
+      if (formattedCodeElement !== null) {
+        formattedCodeElement.innerHTML = formattedRacketCode;
+      }
     }
   }
-  onMount(async () => isPageLoaded = true)
+  onMount(async () => (isPageLoaded = true));
 
   const handleSubmittedCode = async () => {
     if (racketInput.length > 1) {
@@ -40,13 +42,12 @@ if (formattedCodeElement !== null) {
       body: JSON.stringify({ codeToFormat: formattedRacketCode }),
     });
 
-    formattedRacketCode = await response.text();
-
     isDataLoading = false;
+
     await tick();
+
+    formattedRacketCode = await response.text();
     console.log(formattedRacketCode);
-
-
   };
 </script>
 
