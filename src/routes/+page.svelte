@@ -25,26 +25,27 @@
 
     isDataLoading = true;
 
-    // const response = await fetch("/.netlify/functions/hilite", {
-    //   method: "POST",
-    //   body: JSON.stringify({ codeToFormat: formattedRacketCode }),
-    // });
+    const response = await fetch("/.netlify/functions/hilite", {
+      method: "POST",
+      body: JSON.stringify({ codeToFormat: formattedRacketCode }),
+    });
+
+    const HTMLResponse = await response.text();
 
     isDataLoading = false;
     await tick();
 
     // isDataLoading = false;
-    updateDOM();
+    updateDOM(HTMLResponse);
   };
 
-  const updateDOM = () => {
+  const updateDOM = (html : string) => {
     const formattedCodeElement = document.getElementById("formattedCodeDiv");
     console.log(formattedCodeElement);
-    console.log(formattedRacketCode);
     
       if (formattedRacketCode.length > 1) {
         if (formattedCodeElement !== null) {
-          formattedCodeElement.innerHTML = formattedRacketCode;
+          formattedCodeElement.innerHTML = html;
         }
       }
   }
