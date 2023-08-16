@@ -313,7 +313,7 @@
     >
       <li>
         <div class="mr-4 md:mr-6">
-          Formatting logic sourced from <a
+          Formatting logic derived from <a
             href="https://github.com/Sir2B/lispbeautifier"
             ><u>lispbeautifier</u></a
           > repository
