@@ -9,7 +9,7 @@ export const handler = async (event) => {
     const codeToFormatSplit = codeToFormat.split('\n');
     let result = '';
     let i = 0;
-    for (const line of codeToFormatSplit) {
+    for await (const line of codeToFormatSplit) {
       i += 1;
       if (i % 50 === 0) {
         // run function every 50 iterations
