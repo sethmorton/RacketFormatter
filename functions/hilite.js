@@ -14,7 +14,7 @@ export const handler = async (event) => {
     
       let codeSplitJoined = (codeToFormatSplit.slice(i, i + 50)).join('\n');
       
-      const response = await fetch(`http://hilite.me/api?code=${encodeURIComponent(codeSplitJoined.join('\n'))}&lexer=${lexer}&style=${style}`);
+      const response = await fetch(`http://hilite.me/api?code=${encodeURIComponent(codeSplitJoined)}&lexer=${lexer}&style=${style}`);
       
       resultPromises.push(response.text());
       
