@@ -11,6 +11,7 @@ export const handler = async (event) => {
     let i = 0;
     for await (const line of codeToFormatSplit) {
       i += 1;
+      if (codeToFormatSplit.length > 50) {
       if (i % 50 === 0) {
         // run function every 50 iterations
         console.log(`Reached iteration ${i}`); 
@@ -20,7 +21,15 @@ export const handler = async (event) => {
         const response = await fetch(`http://hilite.me/api?code=${encodeURIComponent(code)}&lexer=${lexer}&style=${style}`);
         result += await response.text();
       }
+    } else {
+
+      const code = codeToFormatSplit.slice(i - 50, i).join('\n');
+
+      const response = await fetch(`http://hilite.me/api?code=${encodeURIComponent(code)}&lexer=${lexer}&style=${style}`);
+      result += await response.text();
+      break;
     }
+  }
     try {
 
     
