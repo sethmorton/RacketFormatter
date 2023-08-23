@@ -127,6 +127,16 @@ export function formatRacket (unformattedText: string, formatConfig: FormatConfi
             // skip this space or tab
             break;
           }
+          if ((lastChar == ")" || lastChar == "]") && (nextChar == "(" || nextChar == "[")) {
+            break;
+          }
+          if ((lastChar == ")" || lastChar == "]") && (nextChar == ")" || nextChar == "]")) {
+            break;
+          }
+          if ((lastChar == "(" || lastChar == "(") && (nextChar == "(" || nextChar == "(")) {
+            break;
+          }
+
           // make sure the subindenting process isn't going on:
 
           if (newLine) {
@@ -158,6 +168,8 @@ export function formatRacket (unformattedText: string, formatConfig: FormatConfi
           result += char;
           break;
         }
+
+        
 
         const findPreviousParentheses = () => {
           // loop through the string backwards until we find the previous parentheses, if we find a non-whitespace character, then we return false
@@ -198,6 +210,12 @@ export function formatRacket (unformattedText: string, formatConfig: FormatConfi
         if (findPreviousParentheses()) {
           result += "\n";
           result += " ".repeat(formatConfig.tabSize).repeat(indentLevel);
+          result += char;
+          break;
+        }
+
+        if (lastChar.match(/\w|\d/)) {
+          result += " ";
           result += char;
           break;
         }

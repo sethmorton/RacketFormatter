@@ -25,6 +25,7 @@
 
     isDataLoading = true;
 
+
     const response = await fetch("/.netlify/functions/hilite", {
       method: "POST",
       body: JSON.stringify({ codeToFormat: formattedRacketCode }),
@@ -39,18 +40,17 @@
     updateDOM(HTMLResponse);
   };
 
-  const updateDOM = (html : string) => {
+  const updateDOM = (html: string) => {
     const formattedCodeElement = document.getElementById("formattedCodeDiv");
     console.log(formattedCodeElement);
-    
-      if (formattedRacketCode.length > 1) {
-        if (formattedCodeElement !== null) {
-          formattedCodeElement.innerHTML = html;
-        }
-      }
-  }
-</script>
 
+    if (formattedRacketCode.length > 1) {
+      if (formattedCodeElement !== null) {
+        formattedCodeElement.innerHTML = html;
+      }
+    }
+  };
+</script>
 
 <div
   id="optionModal"
@@ -265,7 +265,7 @@
         </div>
         <div class="flex-grow md:max-w-[calc(50vw+4rem)]">
           <div
-            class="bg-white p-4 rounded-lg h-full max-h-full  overflow-scroll"
+            class="bg-white p-4 rounded-lg h-full max-h-full overflow-scroll"
           >
             {#if !isDataLoading}
               <div
@@ -311,9 +311,7 @@
     <ul
       class="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0"
     >
-      <li>
-
-      </li>
+      <li />
     </ul>
   </div>
 </footer>
