@@ -7,23 +7,22 @@ export const handler = async (event) => {
     const style = 'colorful';
 
     const codeToFormatSplit = codeToFormat.split('\n');
+    let result = '';
+    let i = 0;
+    for (const line of codeToFormatSplit) {
+      i += 1;
+      if (i % 50 === 0) {
+        // run function every 50 iterations
+        console.log(`Reached iteration ${i}`); 
 
-    let resultPromises = [];
+       const code = codeToFormatSplit.slice(i - 50, i).join('\n');
 
-    for (let i = 0; i < codeToFormatSplit.length; i += 50) {
-    
-      let codeSplitJoined = (codeToFormatSplit.slice(i, i + 50)).join('\n');
-      
-      const response = await fetch(`http://hilite.me/api?code=${encodeURIComponent(codeSplitJoined)}&lexer=${lexer}&style=${style}`);
-      
-      resultPromises.push(response.text());
-      
+        const response = await fetch(`http://hilite.me/api?code=${encodeURIComponent(code)}&lexer=${lexer}&style=${style}`);
+        result += await response.text();
+      }
     }
     try {
 
-      const results = await Promise.all(fetchPromises);
-      
-      const result = results.join('');
     
       return {
         statusCode: 200, 
