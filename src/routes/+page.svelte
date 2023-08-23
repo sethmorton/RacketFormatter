@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { formatLispCode } from "$lib/processing/racket_code_formatter";
+  import { formatRacket } from "$lib/processing/racket_code_formatter";
   import bgGradientImage from "$lib/assets/bg-gradient.jpg?as=run";
   import Img from "@zerodevx/svelte-img";
   import { DoubleBounce } from "svelte-loading-spinners";
@@ -12,7 +12,7 @@
   const formatOptions = {
     insertSpaces: true,
     tabSize: 4,
-    endOfLine: "LF",
+    // endOfLine: "LF",
   };
 
   let isPageLoaded = false;
@@ -20,7 +20,7 @@
 
   const handleSubmittedCode = async () => {
     if (racketInput.length > 1) {
-      formattedRacketCode = formatLispCode(racketInput, formatOptions);
+      formattedRacketCode = formatRacket(racketInput, formatOptions);
     }
 
     isDataLoading = true;
@@ -312,12 +312,7 @@
       class="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0"
     >
       <li>
-        <div class="mr-4 md:mr-6">
-          Formatting logic derived from <a
-            href="https://github.com/Sir2B/lispbeautifier"
-            ><u>lispbeautifier</u></a
-          > repository
-        </div>
+
       </li>
     </ul>
   </div>
