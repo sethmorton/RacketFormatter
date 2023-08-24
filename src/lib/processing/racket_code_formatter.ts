@@ -242,6 +242,7 @@ export function formatRacket (unformattedText: string, formatConfig: FormatConfi
           break;
         }
 
+
         result += char;
         break;
       case "[":

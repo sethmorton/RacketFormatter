@@ -33,10 +33,11 @@
 
     const HTMLResponse = await response.text();
 
+
+
     isDataLoading = false;
     await tick();
 
-    // isDataLoading = false;
     updateDOM(HTMLResponse);
   };
 
