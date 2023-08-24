@@ -64,7 +64,10 @@ export function formatRacket (unformattedText: string, formatConfig: FormatConfi
         if (!charInString) {
           if (lastChar == "#") {
             result += char;
-            result += "\n";
+            if (nextChar !== "\n") {
+              result += "\n";
+            }
+            
           } else if (nextChar == "#") {
             result += char;
           }
