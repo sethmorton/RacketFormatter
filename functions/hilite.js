@@ -23,9 +23,8 @@ export const handler = async (event) => {
       }
     } else {
 
-      const code = codeToFormatSplit.slice(i - 50, i).join('\n');
 
-      const response = await fetch(`http://hilite.me/api?code=${encodeURIComponent(code)}&lexer=${lexer}&style=${style}`);
+      const response = await fetch(`http://hilite.me/api?code=${encodeURIComponent(codeToFormat)}&lexer=${lexer}&style=${style}`);
       result += await response.text();
       break;
     }
