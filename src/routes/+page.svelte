@@ -12,7 +12,6 @@
   const formatOptions = {
     insertSpaces: true,
     tabSize: 4,
-    // endOfLine: "LF",
   };
 
   let isPageLoaded = false;

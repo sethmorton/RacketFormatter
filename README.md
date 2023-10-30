@@ -2,6 +2,8 @@
 
 Welcome to the SvelteKit Online Racket Formatter project! 🚀
 
+## [🧠 Formatting Logic]("https://github.com/sethmorton/RacketFormatter/blob/main/src/lib/processing/racket_code_formatter.ts")
+
 ## 📚 Table of Contents
 
 - [🚀 Getting Started](#getting-started)

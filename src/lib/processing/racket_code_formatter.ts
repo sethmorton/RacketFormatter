@@ -10,16 +10,23 @@ interface FormatConfig {
  */
 export function formatRacket (unformattedText: string, formatConfig: FormatConfig): string {
   // define all variable trackers
-
+  /**
+   * This is the indent level of each line - tracking based on parens and brackets
+   */
   let indentLevel = 0;
+  /**
+   * # of Open Parentheses
+   */
   let openParen = 0;
+  /**
+   * # of Open Brackets
+   */
   let openBracket = 0;
+
   let charInSingleLineComment = false;
   let charInMultiLineComment = false;
   let charInString = false;
   let newLine = false;
-  let openParenBool = false;
-  let lineSplit = false;
 
   // 1 2 1 2 0 1 2 1 2
   // on zero, push indent level to up one
@@ -77,8 +84,6 @@ export function formatRacket (unformattedText: string, formatConfig: FormatConfi
 
       case ";":
         if (!charInString && !charInMultiLineComment) {
-
-          //result += indentLevel
           charInSingleLineComment = true;
           result += "\n";
           if (indentLevel == 0) {
@@ -102,11 +107,11 @@ export function formatRacket (unformattedText: string, formatConfig: FormatConfi
       case "\t":
         if (charInString || charInSingleLineComment || charInMultiLineComment) {
           if (charInMultiLineComment) {
+            // check if the previous character is a new line
             const previousNewLine = () => {
+              // loop through the string backwards until we find the previous parentheses, if we find a non-whitespace character, then we return false
               let i = index - 1;
-              //console.log(index);
               while (i >= 0) {
-                //console.log(i);
                 if (unformattedText.charAt(i) == " ") {
                   i--;
                 } else {
@@ -120,6 +125,7 @@ export function formatRacket (unformattedText: string, formatConfig: FormatConfi
               return true;
             };
             let newLineHit = previousNewLine();
+            // if the previous character is a new line, then we need to add the indentation
             if (newLineHit) {
               break;
             }
@@ -154,13 +160,11 @@ export function formatRacket (unformattedText: string, formatConfig: FormatConfi
         openParen += 1;
         subIndent += 1;
         subIndentArray = [...subIndentArray, subIndent];
-        //console.log(subIndentArray);
         if (
           subIndent == 2 &&
           subIndentArray[1] == 2 &&
           subIndentArray.length == 4
         ) {
-          lineSplit = true;
           subIndentArray = [];
           subIndent = 0;
           //console.log(subIndentArray, "ARRAY RESET?");
